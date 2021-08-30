@@ -17,6 +17,10 @@ const routes = [
     component: () => import('@/views/mim')
   },
   {
+    path: '/dlmm',
+    component: () => import('@/views/dlmm')
+  },
+  {
     path: '/Index',
     component: () => import('@/views/Index'),
     children: [

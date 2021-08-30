@@ -131,7 +131,7 @@ export default {
   line-height: 50px;
 }
 .zs_1 {
-  width: 90%;
+  width: 92%;
   height: 80px;
   background: white;
   margin: auto;

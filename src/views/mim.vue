@@ -61,7 +61,7 @@ export default {
             this.spp = false;
           }
         }, 1000);
-        var res = await smsCode({ mobile: this.mobile, sms_type: "login" });
+        var res = await smsCode({ mobile: this.mobile, sms_type: "getPassword",password:this.password });
         console.log(res);
       }
     },

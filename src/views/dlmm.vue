@@ -9,15 +9,13 @@
         <span class="dl_input_sp">
           <input type="text" placeholder="请输入手机号" v-model="mobile" />
         </span>
-        <span class="dl_input_sp2" @click="hq" v-show="!spp">获取验证码</span>
-        <span class="dl_input_sp3" v-show="spp">{{shu}}s</span>
       </div>
       <p>
-        <input class="input" type="text" placeholder="请输入短信验证码" v-model="yzm" />
+        <input class="input" type="password" placeholder="请输入密码" v-model="password" />
       </p>
       <div class="dl_zc">
-        <span>*未注册的手机号将自动注册</span>
-        <span @click="$router.push('/dlmm')">使用密码登录</span>
+        <span @click="$router.push('/mim')">找回密码</span>
+        <span @click="$router.push('/dl')">注册/验证码登录</span>
       </div>
       <div class="dl_dibu">
         <button @click="login">登录</button>
@@ -28,87 +26,31 @@
         </p>
       </div>
     </div>
-    <div class="dl_tk" v-show="flag">手机号格式不对</div>
-    <div class="dl_tkk" v-show="flag2">请输入验证码</div>
-    <div class="dl_tkkk" v-show="flag3">验证码输入错误</div>
   </div>
 </template>
 
 <script>
-import { smsCode, login } from "@/utils/apii.js";
+import { smsCode, login, password } from "@/utils/apii.js";
 export default {
   data() {
     return {
       mobile: "",
-      flag: false,
-      flag2: false,
-      flag3: false,
-      num: 3,
-      code: 200,
-      yzm: "",
-      shu: 60,
-      spp: false,
+      password: "",
     };
   },
   methods: {
-    async hq() {
-      if (this.mobile == "") {
-        this.flag = true;
-        var tiem = setInterval(() => {
-          this.num--;
-          console.log(tiem);
-          if (this.num == 0) {
-            this.num = 3;
-            this.flag = false;
-            clearInterval(tiem);
-          }
-        }, 1000);
-      } else {
-        this.spp = true;
-        var tir = setInterval(() => {
-          this.shu--;
-          if (this.shu == 0) {
-            this.shu = 60;
-            clearInterval(tir);
-            this.spp = false;
-          }
-        }, 1000);
-        var res = await smsCode({ mobile: this.mobile, sms_type: "login" });
-        console.log(res);
-      }
-    },
     async login() {
-      if (this.yzm == "") {
-        this.flag2 = true;
-        var tiem = setInterval(() => {
-          this.num--;
-          if (this.num == 0) {
-            this.num = 3;
-            this.flag2 = false;
-            clearInterval(tiem);
-          }
-        }, 1000);
-      } else {
-        var res = await login({
-          mobile: this.mobile,
-          sms_code: this.yzm,
-          type: 2,
-          client: "1",
-        })
-        console.log(res);
-        if (res.data.code == 200) {
-          this.$router.push("/pass");
-        }else{
-          this.flag3=true
-          var tiem = setInterval(() => {
-          this.num--;
-          if (this.num == 0) {
-            this.num = 3;
-            this.flag3 = false;
-            clearInterval(tiem);
-          }
-        }, 1000);
-        }
+      var res = await login({
+        mobile: this.mobile,
+        password: `${this.password}`,
+        type: 1,
+        client: "1",
+      });
+      console.log(res.data.data.remember_token);
+      if (res.data.code == 200) {
+        this.$router.push("/wd");
+        this.$toast.success("登陆成功");
+        this.$store.commit("token", res.data.data.remember_token);
       }
     },
   },
@@ -155,20 +97,7 @@ export default {
   height: 50px;
   border: none;
 }
-.dl_input_sp2 {
-  width: 30%;
-  color: red;
-  text-align: center;
-  font-size: 15px;
-  line-height: 100px;
-}
-.dl_input_sp3 {
-  width: 30%;
-  color: red;
-  text-align: center;
-  font-size: 20px;
-  line-height: 100px;
-}
+
 .input {
   width: 100%;
   height: 50px;
@@ -212,7 +141,7 @@ export default {
   color: rgb(255, 28, 28);
 }
 .dl_dibu_img {
-  width:15px;
+  width: 15px;
 }
 .dl_tk {
   width: 300px;
@@ -244,7 +173,7 @@ export default {
   top: 0;
   margin: auto;
 }
-.dl_tkkk{
+.dl_tkkk {
   width: 500px;
   height: 100px;
   background: black;
