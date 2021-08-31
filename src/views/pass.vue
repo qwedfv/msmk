@@ -9,7 +9,7 @@
       <span></span>
     </div>
     <div class="mm_button">
-      <button>退出登录</button>
+      <button @click="tui">退出登录</button>
     </div>
   </div>
 </template>
@@ -23,6 +23,10 @@ export default {
   methods:{
         mim(){
             this.$router.push('/mim')
+        },
+        tui(){
+            this.$router.push('/wd')
+          this.$store.commit('tui')
         }
     }
 };

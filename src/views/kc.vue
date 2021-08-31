@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="zs_1_big">
-      <div class="zs_1" v-for="(item,index) in ms" :key="index">
+    <div class="zs_1_big" >
+      <div class="zs_1" v-for="(item,index) in ms" :key="index" @click="go(item.id)">
         <div class="zs_1_left">
-          <img :src="item.teacher_avatar" alt />
+          <img :src="item.avatar" alt />
         </div>
         <div class="zs_1_right">
-          <p>{{item.teacher_name}}</p>
+          <p>{{item.real_name}}</p>
           <p style="color:gray;font-size:12px">{{item.introduction}}</p>
         </div>
       </div>
@@ -15,7 +15,7 @@
   </div>
 </template>
 <script>
-import { banner, appIndex } from "@/utils/apii.js";
+import { teach } from "@/utils/apii.js";
 export default {
   data() {
     return {
@@ -23,17 +23,25 @@ export default {
     };
   },
   async created() {
-    var zi = await appIndex();
-    console.log(zi);
-    this.ms = zi.data.data[2].list;
+    var res = await teach();
+    console.log(res);
+    this.ms = res.data.data.list;
+  },
+  methods: {
+    go(id){
+      this.$router.push({
+        path:'/xq',
+        query:{id:id}
+      })
+    }
   },
 };
 </script>
 <style scoped>
-.zs_1_big{
-    width: 100%;
-    height: 670px;
-    background: whitesmoke;
+.zs_1_big {
+  width: 100%;
+  height: 670px;
+  background: whitesmoke;
 }
 .zs_1 {
   width: 90%;
@@ -58,8 +66,8 @@ export default {
   line-height: 30px;
   font-size: 15px;
 }
-.p{
-    width: 100%;
-    text-align: center;
+.p {
+  width: 100%;
+  text-align: center;
 }
 </style>

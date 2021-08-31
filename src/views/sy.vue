@@ -2,17 +2,21 @@
   <div>
     <van-search v-model="value" shape="round" placeholder="请输入搜索关键词" />
     <div class="lb">
-      <van-swipe  class="van-swipe" :autoplay="3000">
+      <van-swipe class="van-swipe" :autoplay="3000">
         <van-swipe-item class="van-sw">
-          <img src="http://120.53.31.103:84/uploads/image/2021-07-02/eWIwuaHogrdpTM8POFMGCSWuhkK3yUkgK58F6L0x.png" />
+          <img
+            src="http://120.53.31.103:84/uploads/image/2021-07-02/eWIwuaHogrdpTM8POFMGCSWuhkK3yUkgK58F6L0x.png"
+          />
         </van-swipe-item>
         <van-swipe-item class="van-sw">
-          <img src="http://120.53.31.103:84/uploads/image/2021-04-08/3g04sBbCgNAG6WRlnJANB7BtWVHXhwdiZHTM6uDp.jpeg" />
+          <img
+            src="http://120.53.31.103:84/uploads/image/2021-04-08/3g04sBbCgNAG6WRlnJANB7BtWVHXhwdiZHTM6uDp.jpeg"
+          />
         </van-swipe-item>
       </van-swipe>
-      <div class="icon_big">
-        <van-icon class="icon" size="30px" name="comment-o" />
-        <p>大威天龙</p>
+      <div class="icon_big" v-for="(item,index) in dwtl" :key="index">
+       <img :src="item.nav_img" alt="">
+        <p>{{item.name}}</p>
       </div>
     </div>
     <div class="zs_big">
@@ -41,7 +45,7 @@
       </div>
       <div class="tjkc_big" v-for="(item,index) in tjkc" :key="index">
         <div class="tjkc_big_left">
-            <img :src="item.cover_img" alt="">
+          <img :src="item.cover_img" alt />
         </div>
         <div class="tjkc_big_right">
           <p>{{item.title}}</p>
@@ -71,14 +75,15 @@
   </div>
 </template>
 <script>
-import { banner, appIndex } from "@/utils/apii.js";
+import { banner, appIndex, nav } from "@/utils/apii.js";
 export default {
   data() {
     return {
       value: "",
       zsjs: [],
       tjkc: [],
-      ms:[]
+      ms: [],
+      dwtl:[]
     };
   },
   async created() {
@@ -90,6 +95,9 @@ export default {
     this.tjkc = zi.data.data[1].list;
     this.ms = zi.data.data[2].list;
     // console.log(this.ms);
+    var ress=await nav()
+    console.log(ress);
+    this.dwtl=res.data.data
   },
   methods: {},
 };
@@ -105,7 +113,7 @@ export default {
   height: 200px;
   border-bottom: 1px solid gainsboro;
 }
-.van-sw img{
+.van-sw img {
   width: 100%;
   height: 200px;
 }
@@ -153,7 +161,7 @@ export default {
   line-height: 30px;
   font-size: 15px;
 }
-.tjkc_big{
+.tjkc_big {
   width: 90%;
   height: 100px;
   background: white;
@@ -163,19 +171,19 @@ export default {
   align-items: center;
   margin: 15px;
 }
-.tjkc_big_left{
-    width: 40%;
+.tjkc_big_left {
+  width: 40%;
 }
-.tjkc_big_left img{
-    width: 90%;
+.tjkc_big_left img {
+  width: 90%;
 }
-.tjkc_big_right{
-    width: 100%;
-    line-height: 55px;
+.tjkc_big_right {
+  width: 100%;
+  line-height: 55px;
 }
-.right_box{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+.right_box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 </style>

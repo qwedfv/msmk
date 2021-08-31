@@ -21,6 +21,14 @@ const routes = [
     component: () => import('@/views/dlmm')
   },
   {
+    path: '/qd',
+    component: () => import('@/views/qd')
+  },
+  {
+    path: '/xq',
+    component: () => import('@/views/xq')
+  },
+  {
     path: '/Index',
     component: () => import('@/views/Index'),
     children: [

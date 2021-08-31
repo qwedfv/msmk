@@ -49,8 +49,7 @@ export default {
       console.log(res.data.data.remember_token);
       if (res.data.code == 200) {
         this.$router.push("/wd");
-        this.$toast.success("登陆成功");
-        this.$store.commit("token", res.data.data.remember_token);
+        this.$store.commit("token", res.data.data);
       }
     },
   },

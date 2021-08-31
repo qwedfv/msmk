@@ -1,18 +1,19 @@
 <template>
   <div class="box">
     <div class="wd_big">
-      <div class="wd_bu" v-show="!$store.state.token"> 
+      <div class="wd_bu" v-show="!$store.state.token">
         <p class="wd_icon">
           <van-icon name="user-o" size="50px" />
         </p>
         <span @click="$router.push('/dl')">登录</span>/
         <span>注册</span>
       </div>
-       <div class="wd_bu_2" v-show="$store.state.token">
-        <p>
-          <van-icon name="user-o" size="50px" />
+      <div class="wd_bu_2" v-show="$store.state.token">
+        <p class="big_1_img">
+          <img src="@/assets/avatar.jpg" alt />
         </p>
-        <span>153****4878</span>
+        <span>{{$store.state.token.nickname}}</span>
+        <div class="qian" @click="$router.push('/qd')">签到</div>
       </div>
     </div>
     <div class="wd_xx">
@@ -115,14 +116,25 @@
 export default {
   data() {
     return {
-      flag:false
+      flag: false,
     };
   },
-  methods: {
-  },
+  methods: {},
 };
 </script>
 <style scoped>
+.big_1_img {
+  width: 60px;
+  height: 60px;
+  background: gainsboro;
+  border-radius: 50px;
+}
+.big_1_img img {
+  width: 60px;
+  height: 60px;
+  background: gainsboro;
+  border-radius: 50px;
+}
 .box {
   width: 100%;
   height: 1200px;
@@ -130,22 +142,31 @@ export default {
 .wd_big {
   width: 100%;
   height: 200px;
-  background: linear-gradient(
-    to bottom,
-    rgb(245, 90, 141),
-    rgba(189, 9, 9, 0.836)
-  );
+  background:#e55e6a;
   color: white;
   font-size: 20px;
   border-radius: 0px 0px 20px 20px;
 }
-.wd_bu_2{
+.wd_bu_2 {
   width: 100%;
   height: 200px;
   display: flex;
+  position: relative;
   align-items: center;
 }
-.wd_bu_2 p{
+.qian {
+  position: absolute;
+  right: 0;
+  width: 60px;
+  height: 30px;
+  background: blue;
+  text-align: center;
+  font-size: 15px;
+  line-height: 30px;
+  color: white;
+  border-radius: 0px 25px 0px 25px;
+}
+.wd_bu_2 p {
   width: 60px;
   height: 60px;
   background: gainsboro;

@@ -28,7 +28,7 @@ export function password(arg) {
 export function bottom() {
     return service({
         url: request_ul.bottom,
-        data:[],
+        data: [],
         method: 'get'
     })
 }
@@ -44,6 +44,34 @@ export function banner() {
 export function appIndex() {
     return service({
         url: request_ul.appIndex,
+        data: [],
+        method: 'get'
+    })
+}
+export function teach() {
+    return service({
+        url: request_ul.teach,
+        data: [],
+        method: 'get'
+    })
+}
+//课程进详情
+export function teacher(arg) {
+    return service({
+        url: request_ul.teacher + arg,
+        method: 'get'
+    })
+}
+export function mainCourse(arg) {
+    return service({
+        url: request_ul.mainCourse,
+        data:arg,
+        method: 'post'
+    })
+}
+export function nav() {
+    return service({
+        url: request_ul.nav,
         data: [],
         method: 'get'
     })

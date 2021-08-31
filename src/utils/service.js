@@ -6,7 +6,7 @@ import { Toast } from 'vant'
 
 let service = axios.create({
     baseURL: baseUrl, // url = base api url + request url
-    timeout: 5000 // request timeout
+    timeout: 60000 // request timeout
 })
 // 请求拦截
 let loading;

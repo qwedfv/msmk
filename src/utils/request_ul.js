@@ -4,5 +4,9 @@ module.exports={
     password:'/password',
     bottom:'/nav/bottom',
     banner:'/banner',
-    appIndex:'/recommend/appIndex'
+    teach:'/teacher/search/attrs',
+    appIndex:'/recommend/appIndex',
+    teacher:'/teacher/',
+    mainCourse:'/teacher/mainCourse',
+    nav:'/nav/'
 }
