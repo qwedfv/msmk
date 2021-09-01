@@ -65,7 +65,7 @@ export function teacher(arg) {
 export function mainCourse(arg) {
     return service({
         url: request_ul.mainCourse,
-        data:arg,
+        data: arg,
         method: 'post'
     })
 }
@@ -73,6 +73,30 @@ export function nav() {
     return service({
         url: request_ul.nav,
         data: [],
+        method: 'get'
+    })
+}
+
+export function signRecord() {
+    return service({
+        url: request_ul.signRecord,
+        data: [],
+        method: 'get'
+    })
+}
+// 大威天龙
+
+export function courseBasis() {
+    return service({
+        url: request_ul.courseBasis,
+        data: [],
+        method: 'get'
+    })
+}
+// 详情进详情
+export function courseInfo(arg) {
+    return service({
+        url: request_ul.courseInfo + arg,
         method: 'get'
     })
 }

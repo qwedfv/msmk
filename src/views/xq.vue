@@ -12,7 +12,7 @@
         <p>{{js.introduction}}</p>
       </van-tab>
       <van-tab title="主讲课程">
-        <div class="zs_1" v-for="(item,index) in zjkc" :key="index">
+        <div class="zs_1" v-for="(item,index) in zjkc" :key="index"  @click="go(item.id)">
           <div class="zs_1_left">
             <img :src="item.cover_img" alt />
           </div>
@@ -43,13 +43,21 @@ export default {
     var res = await teacher(this.id);
     // console.log(res);
     this.js = res.data.data.teacher;
-
     var ress = await mainCourse({
         teacher_id:this.id
     });
     console.log(ress);
     this.zjkc=ress.data.data.list
-    console.log(this.zjkc);
+    console.log(this.zjkc);             
+  },
+  methods: {
+    go(id){
+      // console.log(id);
+      this.$router.push({
+        path:'/xqjxq',
+        query:{id:id}
+      })
+    }
   },
 };
 </script>

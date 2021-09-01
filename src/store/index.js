@@ -7,11 +7,13 @@ import createPersistedState from "vuex-persistedstate"
 
 export default new Vuex.Store({
   state: {
-    token: ''
+    token: '',
+    name:""
   },
   mutations: {
     token(state, res) {
-      state.token = res
+      state.token = res.remember_token
+      state.name = res.nickname
     },
     tui(state) {
       state.token = ""

@@ -98,6 +98,7 @@ export default {
         console.log(res);
         if (res.data.code == 200) {
           this.$router.push("/pass");
+          this.$store.commit("token", res.data.data);
         }else{
           this.flag3=true
           var tiem = setInterval(() => {

@@ -8,5 +8,8 @@ module.exports={
     appIndex:'/recommend/appIndex',
     teacher:'/teacher/',
     mainCourse:'/teacher/mainCourse',
-    nav:'/nav/'
+    nav:'/nav/',
+    signRecord:'/user/integral/signRecord',
+    courseBasis:'/courseBasis',
+    courseInfo:'/courseInfo/basis_id='
 }

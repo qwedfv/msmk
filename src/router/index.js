@@ -29,6 +29,14 @@ const routes = [
     component: () => import('@/views/xq')
   },
   {
+    path: '/dwtl',
+    component: () => import('@/views/dwtl')
+  },
+  {
+    path: '/xqjxq',
+    component: () => import('@/views/xqjxq')
+  },
+  {
     path: '/Index',
     component: () => import('@/views/Index'),
     children: [

@@ -15,7 +15,7 @@
         </van-swipe-item>
       </van-swipe>
       <div class="icon_big" v-for="(item,index) in dwtl" :key="index">
-       <img :src="item.nav_img" alt="">
+        <img :src="item.nav_img" alt @click="$router.push('/dwtl')"/>
         <p>{{item.name}}</p>
       </div>
     </div>
@@ -83,7 +83,7 @@ export default {
       zsjs: [],
       tjkc: [],
       ms: [],
-      dwtl:[]
+      dwtl: [],
     };
   },
   async created() {
@@ -95,9 +95,10 @@ export default {
     this.tjkc = zi.data.data[1].list;
     this.ms = zi.data.data[2].list;
     // console.log(this.ms);
-    var ress=await nav()
+    var ress = await nav();
     console.log(ress);
-    this.dwtl=res.data.data
+    this.dwtl = ress.data.data;
+    console.log(this.dwtl);
   },
   methods: {},
 };
@@ -116,6 +117,15 @@ export default {
 .van-sw img {
   width: 100%;
   height: 200px;
+}
+.icon_big{
+  width: 95%;
+  height: 100px;
+  padding-left: 20px;
+}
+.icon_big img{
+  width: 30px;
+  height: 30px;
 }
 .icon_big p {
   color: gray;

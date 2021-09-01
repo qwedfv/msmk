@@ -7,7 +7,7 @@
             <img src="@/assets/avatar.jpg" alt />
           </div>
           <div>
-            <p>{{$store.state.token.nickname}}</p>
+            <p>{{$store.state.name}}</p>
             <p>积分：0</p>
           </div>
         </div>
@@ -19,56 +19,55 @@
           :show-confirm="false"
           :style="{ height: '300px' }"
           :row-height="35"
-          class="rl"
+           class="rl"
         />
       </div>
     </div>
     <div class="hui"></div>
     <div class="dibu">
-          <div class="za_big">
-      <div class="zs_t">
-        <p>
-          <span style="color:red">||</span>
-          <span>好课推荐</span>
-        </p>
-        <p>更多 ></p>
-      </div>
-      <div class="tj_tu">
-        <div>
-          <img src="@/assets/2.jpeg" alt />
+      <div class="za_big">
+        <div class="zs_t">
+          <p>
+            <span style="color:red">||</span>
+            <span>好课推荐</span>
+          </p>
+          <p>更多 ></p>
         </div>
-        <div>
-          <div>论渣男的自我修养</div>
-          <div class="tj_tu2">
-            <span>1积分</span>
-            <span>去兑换</span>
+        <div class="tj_tu">
+          <div>
+            <img src="@/assets/2.jpeg" alt />
+          </div>
+          <div>
+            <div>论渣男的自我修养</div>
+            <div class="tj_tu2">
+              <span>1积分</span>
+              <span>去兑换</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="za_big">
+        <div class="zs_t">
+          <p>
+            <span style="color:red">||</span>
+            <span>热门图书</span>
+          </p>
+          <p>更多 ></p>
+        </div>
+        <div class="tj_tu">
+          <div>
+            <img src="@/assets/3.jpeg" alt />
+          </div>
+          <div>
+            <div>VUE开发后台管理系统</div>
+            <div class="tj_tu2">
+              <span>1积分</span>
+              <span>去兑换</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="za_big">
-      <div class="zs_t">
-        <p>
-          <span style="color:red">||</span>
-          <span>热门图书</span>
-        </p>
-        <p>更多 ></p>
-      </div>
-      <div class="tj_tu">
-        <div>
-          <img src="@/assets/3.jpeg" alt />
-        </div>
-        <div>
-          <div>VUE开发后台管理系统</div>
-          <div class="tj_tu2">
-            <span>1积分</span>
-            <span>去兑换</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-   
   </div>
 </template>
 <script>
@@ -77,13 +76,16 @@ export default {
   data() {
     return {};
   },
-
+  async created() {
+    var res = await signRecord();
+    console.log(res);
+  },
   methods: {},
 };
 </script>
 <style>
-.dibu{
-    margin-top: 150px;
+.dibu {
+  margin-top: 150px;
 }
 .tj_tu {
   width: 95%;

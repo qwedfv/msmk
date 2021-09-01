@@ -3,7 +3,7 @@ import axios from 'axios'
 import { baseUrl } from '@/config'
 
 import { Toast } from 'vant'
-
+import store from '@/store'
 let service = axios.create({
     baseURL: baseUrl, // url = base api url + request url
     timeout: 60000 // request timeout
@@ -15,7 +15,9 @@ service.interceptors.request.use(config => {
         message: '加载中...',
         forbidClick: true,
     });
-    // config.headers['Authorization'] = sessionStorage.getItem('token')
+    if (store.state.token) {
+        config.headers['Authorization'] = 'Bearer ' + store.state.token
+    }
     return config
 }, error => {
     console.log(error)
@@ -24,10 +26,10 @@ service.interceptors.request.use(config => {
 // 响应拦截器
 service.interceptors.response.use(res => {
     Toast.clear()
-    return Promise.resolve(res||'error')
+    return Promise.resolve(res || 'error')
 }, error => {
     Toast.clear()
-    console.log('err'+error)
+    console.log('err' + error)
     return Promise.reject(error)
 })
 export default service

@@ -12,7 +12,7 @@
         <p class="big_1_img">
           <img src="@/assets/avatar.jpg" alt />
         </p>
-        <span>{{$store.state.token.nickname}}</span>
+        <span>{{$store.state.name}}</span>
         <div class="qian" @click="$router.push('/qd')">签到</div>
       </div>
     </div>
