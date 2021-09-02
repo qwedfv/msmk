@@ -100,3 +100,27 @@ export function courseInfo(arg) {
         method: 'get'
     })
 }
+// 咨询头部
+export function classify() {
+    return service({
+        url: request_ul.classify,
+        data: [],
+        method: 'get'
+    })
+}
+export function index(arg) {
+    return service({
+        url: request_ul.index,
+        data: arg,
+        method: 'post'
+    })
+}
+// 咨询进详情
+
+export function detail(arg) {
+    return service({
+        url: request_ul.detail,
+        data: arg,
+        method: 'post'
+    })
+}

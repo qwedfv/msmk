@@ -1,17 +1,13 @@
 <template>
   <div id="app">
-   
     <router-view />
   </div>
 </template>
 <script>
 export default {
   data() {
-    return {
-     
-    };
+    return {};
   },
- 
 };
 </script>
 <style>
@@ -19,5 +15,4 @@ export default {
   padding: 0;
   margin: 0;
 }
-
 </style>

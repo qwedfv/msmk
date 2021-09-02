@@ -33,8 +33,16 @@ const routes = [
     component: () => import('@/views/dwtl')
   },
   {
+    path: '/dz',
+    component: () => import('@/views/dz')
+  },
+  {
     path: '/xqjxq',
     component: () => import('@/views/xqjxq')
+  },
+  {
+    path: '/zxxq',
+    component: () => import('@/views/zxxq')
   },
   {
     path: '/Index',

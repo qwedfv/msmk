@@ -14,26 +14,32 @@
       </div>
     </div>
     <div style="width:100%;height:16px;background:whitesmoke"></div>
-    <div class="xqjxq_yh">
+    <div class="xqjxq_yh" @click="showPopup">
       <div>
         <span>优惠</span>:&emsp;领取优惠券最多可减
         <span style="color:orange">80</span>
       </div>
       <div>领取 ></div>
     </div>
-    <div class="xqjxq_yh">
+    <van-popup v-model="show" position="bottom" :style="{ height: '50%' }">优惠券</van-popup>
+    <div class="xqjxq_yh" @click="showPopup2">
       <div>
         <span>服务</span>:&emsp;课程售后
       </div>
       <div>详情 ></div>
     </div>
+    <van-popup v-model="show2" position="bottom" :style="{ height: '50%' }" >
+      <h2 style="text-align:center">课程服务</h2>
+      <p style="font-size:15px">{{sh.name}}</p>
+      <p style="font-size:15px">{{sh.description}}</p>
+    </van-popup>
     <div style="width:100%;height:16px;background:whitesmoke"></div>
     <div class="xqjxq_td">
       <h2>教学团队</h2>
       <div class="xqjxq_dhz">
         <ul class="ul" v-for="(item,index) in jxtd" :key="index">
           <li>
-            <img :src="item.teacher_avatar" alt />
+            <img :src="item.teacher_avatar" alt  @click="go(item.teacher_id)"/>
             <span>{{item.teacher_name}}</span>
           </li>
         </ul>
@@ -59,7 +65,7 @@
     <div class="kcpl">
       <h3>课程评论</h3>
       <van-empty description="暂无评论">
-        <van-button round type="danger" class="bottom-button">按钮</van-button>
+        <van-button round type="danger" class="bottom-button" @click="$router.push('/dz')">立即报名</van-button>
       </van-empty>
     </div>
   </div>
@@ -72,6 +78,9 @@ export default {
       id: "",
       xqjxq: [],
       jxtd: [],
+      sh: [],
+      show: false,
+      show2: false,
       active: 2,
     };
   },
@@ -81,7 +90,24 @@ export default {
     console.log(res);
     this.xqjxq = res.data.data.info;
     this.jxtd = res.data.data.teachers;
-    console.log(this.xqjxq);
+    this.sh = res.data.data.info.service[0];
+
+    console.log(this.sh);
+  },
+  methods: {
+    showPopup() {
+      this.show = true;
+    },
+    showPopup2() {
+      this.show2 = true;
+    },
+    go(id){
+      console.log(id);
+      this.$router.push({
+        path:'/xq',
+        query:{id:id}
+      })
+    }
   },
 };
 </script>
@@ -174,7 +200,7 @@ export default {
   align-items: center;
 }
 .bottom-button {
-    width: 370px;
-    height: 40px;
-  }
+  width: 370px;
+  height: 40px;
+}
 </style>
